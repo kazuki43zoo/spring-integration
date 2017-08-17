@@ -2951,6 +2951,73 @@
 		</xsd:complexContent>
 	</xsd:complexType>
 
+	<xsd:element name="bean-validating-filter">
+		<xsd:annotation>
+			<xsd:documentation>
+				Configures a Consumer Endpoint for the
+				'org.springframework.integration.filter.MessageFilter'
+				with an 'org.springframework.integration.xml.selector.BeanValidatingMessageSelector'
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="baseValidatingFilterType">
+					<xsd:attribute name="validator" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								Reference to a custom 'org.springframework.validation.Validator' strategy.
+								By default, an instance of 'org.springframework.validation.beanvalidation.LocalValidatorFactoryBean' is created and used.
+							</xsd:documentation>
+							<xsd:appinfo>
+								<tool:annotation kind="ref">
+									<tool:expected-type type="org.springframework.validation.Validator" />
+								</tool:annotation>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="validation-hints-resolver" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								Reference to a custom 'org.springframework.integration.selector.BeanValidatingMessageSelector$ValidationHintsResolver' strategy
+							</xsd:documentation>
+							<xsd:appinfo>
+								<tool:annotation kind="ref">
+									<tool:expected-type type="org.springframework.integration.selector.BeanValidatingMessageSelector$ValidationHintsResolver" />
+								</tool:annotation>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="baseValidatingFilterType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Base type for Validating filters.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="poller" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string"/>
+		<xsd:attribute name="discard-channel" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					Message Channel where you want rejected messages to be sent.
+				</xsd:documentation>
+				<xsd:appinfo>
+					<tool:annotation kind="ref">
+						<tool:expected-type type="org.springframework.messaging.MessageChannel" />
+					</tool:annotation>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="throw-exception-on-rejection" type="xsd:boolean" default="false"/>
+		<xsd:attributeGroup ref="inputOutputChannelGroup"/>
+	</xsd:complexType>
+
     <!--
         Router Element Definitions
     -->

@@ -799,7 +799,7 @@
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
-				<xsd:extension base="baseFilterType">
+				<xsd:extension base="integration:baseValidatingFilterType">
 					<xsd:attribute name="xml-validator" type="xsd:string">
 						<xsd:annotation>
 							<xsd:documentation>
@@ -834,32 +834,6 @@
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-
-	<xsd:complexType name="baseFilterType">
-		<xsd:annotation>
-			<xsd:documentation>
-	Base type for XML filters.
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element ref="integration:poller" minOccurs="0" maxOccurs="1"/>
-		</xsd:sequence>
-		<xsd:attribute name="id" type="xsd:string"/>
-		<xsd:attribute name="discard-channel" type="xsd:string">
-			<xsd:annotation>
-				<xsd:documentation>
-					Message Channel where you want rejected messages to be sent.
-				</xsd:documentation>
-				<xsd:appinfo>
-					<tool:annotation kind="ref">
-						<tool:expected-type type="org.springframework.messaging.MessageChannel" />
-					</tool:annotation>
-				</xsd:appinfo>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="throw-exception-on-rejection" type="xsd:boolean" default="false"/>
-		<xsd:attributeGroup ref="integration:inputOutputChannelGroup"/>
-	</xsd:complexType>
 
 	<xsd:complexType name="inputOutputEndpoint">
 		<xsd:sequence>

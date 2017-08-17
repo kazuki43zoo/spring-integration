@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2014 the original author or authors.
+ * Copyright 2002-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ package org.springframework.integration.config.xml;
  * @author David Turanski
  * @author Gary Russell
  * @author Artem Bilan
+ * @author Kazuki Shimizu
  */
 public class IntegrationNamespaceHandler extends AbstractIntegrationNamespaceHandler {
 
@@ -36,6 +37,7 @@ public class IntegrationNamespaceHandler extends AbstractIntegrationNamespaceHan
 		registerBeanDefinitionParser("transformer", new TransformerParser());
 		registerBeanDefinitionParser("enricher", new EnricherParser());
 		registerBeanDefinitionParser("filter", new FilterParser());
+		registerBeanDefinitionParser("bean-validating-filter", new BeanValidatingFilterParser());
 		registerBeanDefinitionParser("router", new DefaultRouterParser());
 		registerBeanDefinitionParser("header-value-router", new HeaderValueRouterParser());
 		registerBeanDefinitionParser("payload-type-router", new PayloadTypeRouterParser());
